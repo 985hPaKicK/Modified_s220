@@ -166,6 +166,9 @@ char* get_samsung_wifi_type()
 
 static int insmod(const char *filename, const char *args)
 {
+#ifdef S220
+    property_set("sys.wifi_insmod", "1");
+#endif
     void *module;
     unsigned int size;
     int ret;
@@ -193,6 +196,9 @@ static int rmmod(const char *modname)
         else
             break;
     }
+#ifdef S220
+    property_set("sys.wifi_insmod", "0");
+#endif
 
     if (ret != 0)
         ALOGD("Unable to unload driver module \"%s\": %s\n",
