@@ -1809,6 +1809,7 @@ public class WifiStateMachine extends StateMachine {
         new Thread(new Runnable() {
             public void run() {
                 try {
+                    mNwService.stopAccessPoint(mInterfaceName);
                     mNwService.startAccessPoint(config, mInterfaceName, SOFTAP_IFACE);
                 } catch (Exception e) {
                     loge("Exception in softap start " + e);
